@@ -1,0 +1,344 @@
+
+.crystal-visual {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.scene-glow {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 110, 255, .3),
+    transparent 70%
+  );
+  filter: blur(30px);
+}
+
+/* Crystal */
+
+.crystal-container {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  perspective: 800px;
+}
+
+.crystal {
+  position: relative;
+  width: 145px;
+  height: 145px;
+  transform-style: preserve-3d;
+  animation: crystalRotate 12s linear infinite;
+}
+
+.crystal-face {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(115, 190, 255, .7),
+    rgba(0, 80, 210, .12)
+  );
+  border: 1px solid rgba(120, 195, 255, .8);
+  clip-path: polygon(
+    50% 0%, 100% 50%, 50% 100%, 0% 50%
+  );
+  backdrop-filter: blur(5px);
+}
+
+.face-one {
+  transform: translateZ(35px);
+}
+
+.face-two {
+  transform: rotateY(180deg) translateZ(35px);
+}
+
+.face-three {
+  transform: rotateY(90deg) translateZ(35px);
+}
+
+.face-four {
+  transform: rotateY(-90deg) translateZ(35px);
+}
+
+.face-five {
+  transform: rotateX(90deg) translateZ(35px);
+}
+
+.face-six {
+  transform: rotateX(-90deg) translateZ(35px);
+}
+
+@keyframes crystalRotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+  }
+}
+
+/* Orbit */
+
+.orbit {
+  position: absolute;
+  width: 90%;
+  height: 160px;
+  left: 5%;
+  top: 43%;
+  border: 1px solid rgba(0, 130, 255, .8);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 120, 255, .25);
+}
+
+.orbit-one {
+  transform: rotate(-18deg);
+  animation: orbitGlow 4s ease-in-out infinite;
+}
+
+.orbit-two {
+  transform: rotate(18deg);
+  opacity: .35;
+}
+
+@keyframes orbitGlow {
+  50% { opacity: .4; }
+}
+
+/* Platform */
+
+.platform {
+  position: absolute;
+  width: 240px;
+  height: 75px;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(#142b4a, #020813);
+  border-bottom: 5px solid #087cff;
+  box-shadow: 0 15px 35px rgba(0, 90, 255, .4);
+}
+
+.platform-top {
+  position: absolute;
+  width: 85%;
+  height: 35px;
+  top: -16px;
+  left: 7.5%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1b497d, #07172c);
+  border: 1px solid #398bff;
+}
+
+.platform-light {
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  bottom: -17px;
+  background: #087cff;
+  filter: blur(18px);
+}
+
+/* Cards */
+
+.floating-card {
+  position: absolute;
+  z-index: 4;
+  padding: 15px;
+  color: #eef6ff;
+  background: rgba(9, 25, 48, .85);
+  border: 1px solid rgba(80, 160, 255, .55);
+  border-radius: 13px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 80, 255, .15);
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  50% { translate: 0 -12px; }
+}
+
+.code-card {
+  top: 12%;
+  left: 3%;
+  width: 170px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.window-dots i {
+  width: 9px;
+  height: 9px;
+  background: #168cff;
+  border-radius: 50%;
+}
+
+.window-dots i:first-child { background: #ff5b65; }
+.window-dots i:nth-child(2) { background: #ffbd4a; }
+
+.code-icon {
+  color: #32a2ff;
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.code-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.code-lines span {
+  width: 80%;
+  height: 4px;
+  border-radius: 5px;
+  background: #168cff;
+}
+
+.code-lines span:nth-child(even) { width: 55%; }
+
+.satisfaction-card {
+  top: 10%;
+  right: 3%;
+  width: 160px;
+  animation-delay: 1s;
+}
+
+.satisfaction-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.satisfaction-top strong { font-size: 28px; }
+.satisfaction-top span { color: #168cff; font-size: 27px; }
+
+.satisfaction-card small {
+  color: #aebed2;
+}
+
+.mini-bars {
+  display: flex;
+  align-items: end;
+  gap: 5px;
+  height: 25px;
+  margin-top: 10px;
+}
+
+.mini-bars i {
+  width: 12px;
+  background: #168cff;
+  border-radius: 3px 3px 0 0;
+}
+
+.mini-bars i:nth-child(1) { height: 40%; }
+.mini-bars i:nth-child(2) { height: 60%; }
+.mini-bars i:nth-child(3) { height: 80%; }
+.mini-bars i:nth-child(4) { height: 100%; }
+
+.performance-card {
+  bottom: 22%;
+  left: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation-delay: 1.5s;
+}
+
+.rocket-icon { font-size: 25px; }
+.performance-card span { color: #9fb4cf; font-size: 12px; }
+
+.small-card {
+  right: 5%;
+  bottom: 28%;
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  animation-delay: 2s;
+}
+
+.small-card span {
+  font-size: 27px;
+  color: #168cff;
+}
+
+/* Particles */
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #168cff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 4px #087cff;
+  animation: particleGlow 3s infinite alternate;
+}
+
+.particle-one { top: 12%; left: 35%; }
+.particle-two { top: 65%; right: 8%; }
+.particle-three { bottom: 20%; left: 8%; }
+
+@keyframes particleGlow {
+  to { opacity: .2; transform: scale(.5); }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .crystal-visual { height: 400px; }
+
+  .crystal {
+    width: 110px;
+    height: 110px;
+  }
+
+  .code-card {
+    left: 0;
+    width: 125px;
+  }
+
+  .satisfaction-card {
+    right: 0;
+    width: 125px;
+  }
+
+  .performance-card {
+    left: 0;
+    bottom: 12%;
+  }
+
+  .small-card {
+    right: 0;
+    bottom: 18%;
+  }
+
+  .platform {
+    width: 190px;
+    bottom: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crystal,
+  .orbit,
+  .floating-card,
+  .particle {
+    animation: none;
+  }
+}
