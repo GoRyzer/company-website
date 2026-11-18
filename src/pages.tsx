@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import Seo from './components/Seo'
 import ProjectArtwork from './components/ProjectArtwork'
 import { navigate, navigateToSection } from './router'
+import EditorialArtwork from './components/EditorialArtwork'
 
 const pageStyles = `
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap');
@@ -53,21 +54,55 @@ function PageLink({ to, children, className }: { to: string; children: React.Rea
   return <a className={className} href={sectionId ? `/#${sectionId}` : to} onClick={(event) => { event.preventDefault(); if (sectionId) navigateToSection(sectionId); else navigate(to) }}>{children}</a>
 }
 
-function PageHero({ eyebrow, title, emphasis, intro, className = '' }: { eyebrow: string; title: string; emphasis: string; intro: string; className?: string }) {
+
+function PageHero({
+  eyebrow,
+  title,
+  emphasis,
+  intro,
+  className = '',
+  art,
+}: {
+  eyebrow: string
+  title: string
+  emphasis: string
+  intro: string
+  className?: string
+  art?: 'about' | 'founders' | 'services' | 'process' | 'insights' | 'contact' | 'careers' | 'legal'
+}) {
   return (
     <>
       <PageStyles />
-    <section className={`page-hero ${className}`}>
-      <div className="page-shell">
-        <nav className="breadcrumbs" aria-label="Breadcrumb"><PageLink to="/">Home</PageLink><span>/</span><span>{eyebrow}</span></nav>
-        <p className="eyebrow"><span className="eyebrow-mark" /> {eyebrow}</p>
-        <h1>{title}<br /><em>{emphasis}</em></h1>
-        <p className="page-hero-intro">{intro}</p>
-      </div>
-    </section>
+      <section className={`page-hero ${className}`}>
+        <div className="page-shell">
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <PageLink to="/">Home</PageLink>
+            <span>/</span>
+            <span>{eyebrow}</span>
+          </nav>
+
+          <p className="eyebrow">
+            <span className="eyebrow-mark" /> {eyebrow}
+          </p>
+
+          <h1>
+            {title}<br />
+            <em>{emphasis}</em>
+          </h1>
+
+          <p className="page-hero-intro">{intro}</p>
+
+          {art && (
+            <div className="page-hero-art">
+              <EditorialArtwork variant={art} />
+            </div>
+          )}
+        </div>
+      </section>
     </>
   )
 }
+
 
 function SectionCta({ title = 'Have a project in mind?', text = 'Tell us what you are planning. We will help define a useful next step.' }: { title?: string; text?: string }) {
   return (
