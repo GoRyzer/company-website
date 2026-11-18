@@ -149,10 +149,35 @@ export function AboutPage() {
 }
 
 export function FoundersPage() {
-  const founders = [
-    { name: 'SILAPARASETTI DEEPAK SURYA MANI LAKSHMAN', bio: 'Professional biography to be added.' },
-    { name: 'SILAPARASETTI DEEKSHITH SATYA SAI RAM', bio: 'Professional biography to be added.' },
-  ]
+ const founders = [
+  {
+    name: 'SILAPARASETTI DEEPAK SURYA MANI LAKSHMAN',
+    bio: `I'm Deepak, Founder of GoRyzer, an independent digital studio.
+
+I'm currently pursuing my B.Tech in Data Science, with a strong interest in technology, software development, and building innovative digital products.
+
+My work and interests extend across web technologies, artificial intelligence, augmented reality (AR), interactive experiences, and emerging technologies.
+
+At GoRyzer, I focus on exploring new technologies, developing web applications, creating interactive digital experiences, and turning ideas into practical solutions.
+
+I believe in continuous learning, experimentation, and building technology that creates meaningful, long-term value.
+
+Good work. Built to last.`
+  },
+    {
+  name: 'SILAPARASETTI DEEKSHITH SATYA SAI RAM',
+  bio: `I'm Deekshith, Founder of GoRyzer, an independent digital studio.
+
+I'm currently pursuing my B.Tech in Computer Science, with a strong interest in software development, technology, and building innovative digital solutions.
+
+I enjoy exploring new technologies, solving problems, and transforming ideas into practical digital products.
+
+At GoRyzer, I focus on mobile application development and contributing to the creation of technology-driven solutions that help businesses grow.
+
+I believe in continuous learning, creative thinking, and building products that deliver lasting value.
+
+Good work. Built to last.`
+}  ]
   return <>
     <Seo title="Founders | GoRyzer" description="Meet the two equal founders of GoRyzer and learn about their shared vision for building meaningful digital experiences." path="/founders" structuredData={{ '@context': 'https://schema.org', '@type': 'Organization', name: 'GoRyzer', url: 'https://goryzer.online/', founder: founders.map((founder) => ({ '@type': 'Person', name: founder.name, jobTitle: 'Founder', worksFor: { '@type': 'Organization', name: 'GoRyzer' } })) }} />
     <PageHero eyebrow="Our founders" title="Equal founders." emphasis="A shared vision." intro="GoRyzer is led by two founders, with each founder given equal importance." />
