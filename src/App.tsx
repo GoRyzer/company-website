@@ -1,5 +1,5 @@
 
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import {
   ArrowDown,
   ArrowRight,
@@ -11,6 +11,23 @@ import {
 } from 'lucide-react'
 
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import ProjectArtwork from './components/ProjectArtwork'
+import { navigate, navigateToSection, usePathname } from './router'
+import {
+  AboutPage,
+  ArticlePage,
+  CareersPage,
+  FoundersPage,
+  InsightsPage,
+  LegalPage,
+  NotFoundPage,
+  ProcessPage,
+  ServiceDetailPage,
+  ServicesPage,
+  WorkPage,
+  serviceData,
+} from './pages'
 
 const services = [
   {
@@ -65,6 +82,51 @@ const steps = [
 type ContactStatus = 'idle' | 'sending' | 'sent' | 'error'
 
 function App() {
+  const pathname = usePathname()
+
+  if (pathname === '/contact') return <ContactRedirect />
+
+  if (pathname !== '/') {
+    let page
+    if (pathname === '/about') page = <AboutPage />
+    else if (pathname === '/founders') page = <FoundersPage />
+    else if (pathname === '/services') page = <ServicesPage />
+    else if (pathname.startsWith('/services/')) {
+      const slug = pathname.split('/').filter(Boolean)[1]
+      page = serviceData.some((service) => service.slug === slug)
+        ? <ServiceDetailPage slug={slug} />
+        : <NotFoundPage />
+    } else if (pathname === '/work') page = <WorkPage />
+    else if (pathname === '/process') page = <ProcessPage />
+    else if (pathname === '/insights') page = <InsightsPage />
+    else if (pathname.startsWith('/insights/')) {
+      const slug = pathname.split('/').filter(Boolean)[1]
+      page = <ArticlePage slug={slug} />
+    } else if (pathname === '/careers') page = <CareersPage />
+    else if (pathname === '/privacy-policy') page = <LegalPage type="privacy" />
+    else if (pathname === '/terms-and-conditions') page = <LegalPage type="terms" />
+    else page = <NotFoundPage />
+
+    return (
+      <>
+        <Navbar />
+        {page}
+        <Footer />
+      </>
+    )
+  }
+
+  return <HomePage />
+}
+
+function ContactRedirect() {
+  useEffect(() => {
+    navigateToSection('contact')
+  }, [])
+  return <HomePage />
+}
+
+function HomePage() {
   const [contactStatus, setContactStatus] = useState<ContactStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -258,39 +320,15 @@ function App() {
             </div>
 
             <div className="work-grid">
-              <article className="work-card work-card-large">
-                <div className="work-visual work-visual-heritage">
-                  <div className="heritage-nav"><span>FIELDNOTES</span><span>PLACES & PEOPLE &nbsp; MENU +</span></div>
-                  <div className="heritage-copy">
-                    <span className="visual-kicker">A journal for the curious</span>
-                    <span className="heritage-title">The world<br />is still wide.</span>
-                    <span className="heritage-link">Discover the journal&nbsp; ↗</span>
-                  </div>
-                  <div className="heritage-sun" />
-                  <div className="heritage-hill hill-back" />
-                  <div className="heritage-hill hill-front" />
-                  <span className="visual-index">01 — EDITORIAL</span>
-                </div>
+              <article className="work-card work-card-large" id="project-fieldnotes">
+                <ProjectArtwork variant="fieldnotes" />
                 <div className="work-caption">
                   <div><h3>Fieldnotes</h3><p>Editorial concept · Storytelling & digital design</p></div>
                   <span className="concept-label">Illustrative concept</span>
                 </div>
               </article>
-              <article className="work-card">
-                <div className="work-visual work-visual-house">
-                  <div className="house-top"><span>STILL HOUSE</span><span>EST. FOR LIVING WELL</span></div>
-                  <div className="house-room">
-                    <div className="house-window"><div /></div>
-                    <div className="house-vase" />
-                    <div className="house-table" />
-                    <div className="house-chair" />
-                    <div className="house-copy">
-                      <span>A quieter kind of stay</span>
-                      <span>Find your still place&nbsp; ↗</span>
-                    </div>
-                  </div>
-                  <span className="visual-index">02 — HOSPITALITY</span>
-                </div>
+              <article className="work-card" id="project-still-house">
+                <ProjectArtwork variant="still-house" />
                 <div className="work-caption">
                   <div><h3>Still House</h3><p>Hospitality concept · Identity & web experience</p></div>
                   <span className="concept-label">Illustrative concept</span>
@@ -346,6 +384,28 @@ function App() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        <section className="section home-founders" aria-labelledby="home-founders-title">
+          <div className="page-shell">
+            <div className="section-heading section-heading-row">
+              <div>
+                <p className="eyebrow"><span className="eyebrow-mark" /> The people behind GoRyzer</p>
+                <h2 id="home-founders-title">Two founders.<br /><em>One shared direction.</em></h2>
+              </div>
+              <a className="text-link" href="/founders" onClick={(event) => { event.preventDefault(); navigate('/founders') }}>Meet the founders</a>
+            </div>
+            <div className="home-founder-grid">
+              <article className="home-founder">
+                <div className="home-founder-mark" aria-hidden="true"><span>01</span></div>
+                <div><p className="eyebrow">Founder</p><h3>SILAPARASETTI DEEPAK SURYA MANI LAKSHMAN</h3></div>
+              </article>
+              <article className="home-founder">
+                <div className="home-founder-mark" aria-hidden="true"><span>02</span></div>
+                <div><p className="eyebrow">Founder</p><h3>SILAPARASETTI DEEKSHITH SATYA SAI RAM</h3></div>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -411,19 +471,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="page-shell footer-main">
-          <a className="footer-brand" href="#home" aria-label="GoRyzer, back to top">
-            Go<span>Ryzer</span><i>®</i>
-          </a>
-          <p>Independent thinking.<br />Digital work, done well.</p>
-          <a className="back-to-top" href="#home">Back to the beginning <ArrowUpRight size={14} /></a>
-        </div>
-        <div className="page-shell footer-bottom">
-          <span>© {new Date().getFullYear()} GoRyzer. All rights reserved.</span>
-          <span>Made with care.</span>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }

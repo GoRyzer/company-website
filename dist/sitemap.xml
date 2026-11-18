@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://company-website2.vercel.app/</loc>
+    <loc>https://goryzer.online/</loc>
   </url>
+  <url><loc>https://goryzer.online/about</loc></url>
+  <url><loc>https://goryzer.online/founders</loc></url>
+  <url><loc>https://goryzer.online/services</loc></url>
+  <url><loc>https://goryzer.online/services/web-development</loc></url>
+  <url><loc>https://goryzer.online/services/website-design</loc></url>
+  <url><loc>https://goryzer.online/services/app-development</loc></url>
+  <url><loc>https://goryzer.online/services/ui-ux-design</loc></url>
+  <url><loc>https://goryzer.online/services/ecommerce</loc></url>
+  <url><loc>https://goryzer.online/services/custom-software</loc></url>
+  <url><loc>https://goryzer.online/services/3d-web-experiences</loc></url>
+  <url><loc>https://goryzer.online/work</loc></url>
+  <url><loc>https://goryzer.online/process</loc></url>
+  <url><loc>https://goryzer.online/insights</loc></url>
+  <url><loc>https://goryzer.online/insights/planning-a-modern-business-website</loc></url>
+  <url><loc>https://goryzer.online/insights/why-digital-products-need-clear-process</loc></url>
+  <url><loc>https://goryzer.online/insights/building-more-useful-user-interfaces</loc></url>
+  <url><loc>https://goryzer.online/insights/choosing-the-right-digital-investment</loc></url>
+  <url><loc>https://goryzer.online/insights/when-3d-adds-value-to-the-web</loc></url>
+  <url><loc>https://goryzer.online/careers</loc></url>
+  <url><loc>https://goryzer.online/privacy-policy</loc></url>
+  <url><loc>https://goryzer.online/terms-and-conditions</loc></url>
 </urlset>
