@@ -119,8 +119,8 @@ function SectionCta({ title = 'Have a project in mind?', text = 'Tell us what yo
 
 export function AboutPage() {
   const founders = [
-    ['SILAPARASETTI DEEPAK SURYA MANI LAKSHMAN', 'Professional biography to be added.'],
-    ['SILAPARASETTI DEEKSHITH SATYA SAI RAM', 'Professional biography to be added.'],
+    ['SILAPARASETTI DEEPAK SURYA MANI LAKSHMAN', ],
+    ['SILAPARASETTI DEEKSHITH SATYA SAI RAM', ],
   ]
   return (
     <>
